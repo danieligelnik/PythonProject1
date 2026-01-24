@@ -36,7 +36,7 @@ def show_local_time(data,side):
     with side:
         st.subheader("Local time")
         st.markdown(
-                f"<div style='font-size:18px'>{city_time.strftime('%d-%m-%Y %H:%M')}</div>",
+                f"<div style='font-size:18px'>{city_time.strftime('%d-%b-%Y %H:%M')}</div>",
                 unsafe_allow_html=True,
         )
 
