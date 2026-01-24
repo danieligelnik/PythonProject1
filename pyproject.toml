@@ -2,7 +2,7 @@
 name = "pythonproject1"
 version = "0.1.0"
 description = ""
-authors = ["Your Name <you@example.com>"]
+authors = ["Daniel Igelnik <igelnik@gmail.com>, Vita Preskovsky <vita.preskovsky@gmail.com> "]
 readme = "README.md"
 package-mode = false
 
