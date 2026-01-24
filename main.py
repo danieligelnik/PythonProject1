@@ -7,6 +7,10 @@ st.title('Weather App')
 name = st.text_input('Enter your city name', '')
 if not name:
     st.stop()
+if any(ch.isdigit() for ch in city):
+    st.error("City name must not contain numbers")
+    st.stop()
+
 if name:
     st.write(f'Weather in {name}, welcome to the weather app!')
 
@@ -27,6 +31,9 @@ params = {
 
 # Sent request to weather site
 r = req.get(url, params=params)
+if r.status_code != 200:
+    st.error("City not found")
+    st.stop()
 
 # Get response from weather site in JSON format and parse it
 data = r.json()
