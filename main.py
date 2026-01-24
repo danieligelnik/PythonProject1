@@ -7,7 +7,7 @@ st.title('Weather App')
 name = st.text_input('Enter your city name', '')
 if not name:
     st.stop()
-if any(ch.isdigit() for ch in city):
+if any(ch.isdigit() for ch in name):
     st.error("City name must not contain numbers")
     st.stop()
 
