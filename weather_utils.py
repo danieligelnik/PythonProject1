@@ -3,6 +3,8 @@ import altair as alt
 import pandas as pd
 import streamlit as st
 import requests as req
+from geopy.geocoders import Nominatim
+from typing import Optional, Dict
 
 
 def get_json_data(url,city):
@@ -105,3 +107,55 @@ def show_city_map(data):
     st.subheader("City map")
     st.image(map_url)
 '''
+
+
+def create_city_map(city: str) -> Optional[Dict[str, str]]:
+
+    # Get coordinates Nominatim (OpenStreetMap)
+    geolocator = Nominatim(user_agent="my_python_app_2026")
+    try:
+        location = geolocator.geocode(city)
+        if not location:
+            print(f"Ошибка: Город '{city}' не найден.")
+            return None
+    except Exception as e:
+        print(f"Ошибка геокодинга: {e}")
+        return None
+
+    # 2. Get API Cartes.io doc:https://github.com/M-Media-Group/Cartes.io/wiki/API
+    api_url = "https://cartes.io/api/maps"
+
+    payload = {
+        "title": f"Карта города {city}",
+        "privacy": "public",
+        "center_lat": location.latitude,
+        "center_lng": location.longitude,
+        "zoom": 12
+    }
+
+    try:
+        response = req.post(api_url, json=payload)
+        response.raise_for_status()
+        data = response.json()
+
+        map_uuid = data.get("uuid")
+        # Get map
+        map_url = f"https://cartes.io/maps/{map_uuid}"
+
+        # Get size frame 600x400
+        embed_code = (
+            f'<iframe src="{map_url}/embed" '
+            f'width="600" height="400" '
+            f'frameborder="0"></iframe>'
+        )
+
+        return {
+            "uuid": map_uuid,
+            "url": map_url,
+            "embed_code": embed_code,
+            "coords": (location.latitude, location.longitude)
+        }
+
+    except req.exceptions.RequestException as e:
+        print(f"Ошибка API Cartes.io: {e}")
+        return None
