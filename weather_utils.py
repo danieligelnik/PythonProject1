@@ -113,14 +113,8 @@ def create_city_map(city: str) -> Optional[Dict[str, str]]:
 
     # Get coordinates Nominatim (OpenStreetMap)
     geolocator = Nominatim(user_agent="my_python_app_2026")
-    try:
-        location = geolocator.geocode(city)
-        if not location:
-            print(f"Ошибка: Город '{city}' не найден.")
-            return None
-    except Exception as e:
-        print(f"Ошибка геокодинга: {e}")
-        return None
+    location = geolocator.geocode(city)
+
 
     # 2. Get API Cartes.io doc:https://github.com/M-Media-Group/Cartes.io/wiki/API
     api_url = "https://cartes.io/api/maps"
