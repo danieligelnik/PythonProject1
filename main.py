@@ -31,4 +31,3 @@ show_forecast(forecast_data)
 show_daily_conditions(forecast_data)
 
 #show_city_map(data)
-create_city_map(city)
