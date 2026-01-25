@@ -91,5 +91,16 @@ def show_daily_conditions(forecast_data):
             st.markdown(f"**{day}**")
             st.image(f"https://openweathermap.org/img/wn/{info['icon']}@2x.png", width=60)
             st.write(info["condition"])
-           
 
+
+def show_city_map(data):
+    lat = data["coord"]["lat"]
+    lon = data["coord"]["lon"]
+
+    map_url = (
+        "https://staticmap.openstreetmap.de/staticmap.php"
+        f"?center={lat},{lon}&zoom=12&size=600x400&markers={lat},{lon},red-pushpin"
+    )
+
+    st.subheader("City map")
+    st.image(map_url)
