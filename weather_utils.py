@@ -5,7 +5,7 @@ import streamlit as st
 import requests as req
 
 
-def get_weather(url,city):
+def get_json_data(url,city):
     # Parameters for Weather API past to get request
     params = {
             "q": city,
@@ -19,14 +19,6 @@ def get_weather(url,city):
         st.stop()
     # Get response from weather site in JSON format and parse it
     return r.json()
-
-def get_forecast(url, city):
-    fr = req.get(url,
-            params={"q": city, "appid": st.secrets["DB_TOKEN"], "units": st.secrets["weather"]["units"]})
-    if fr.status_code != 200:
-        st.error("City not found")
-        st.stop()
-    return fr.json()
 
 def show_local_time(data,side):
     # st.metric("Temperature", f"{temp} °C", delta=f"{temp_delta} °C")

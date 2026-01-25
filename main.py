@@ -17,7 +17,7 @@ if city:
 
 
 weather_url = f"{url}/weather"
-data = get_weather(weather_url,city)
+data = get_json_data(weather_url,city)
 #create row with left and right where 3/4
 #parts of the screen is left and 1/4 is right
 #this is needed for screen rendering by streamlit
@@ -26,7 +26,7 @@ show_weather(data,side=left)
 show_local_time(data,side=right)
 
 forecast_url = f"{url}/forecast"
-forecast_data = get_forecast(forecast_url, city)
+forecast_data = get_json_data(forecast_url, city)
 show_forecast(forecast_data)
 show_daily_conditions(forecast_data)
 
