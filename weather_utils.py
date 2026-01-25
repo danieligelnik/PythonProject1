@@ -40,7 +40,7 @@ def show_local_time(data,side):
                 unsafe_allow_html=True,
         )
         st.markdown(
-                f"<div style='font-size:24px'>{city_time.strftime('%H:%M')}</div>",
+                f"<div style='font-size:24px'>**{city_time.strftime('%H:%M')}**</div>",
                 unsafe_allow_html=True,
         )
 
