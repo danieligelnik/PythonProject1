@@ -92,7 +92,7 @@ def show_daily_conditions(forecast_data):
             st.image(f"https://openweathermap.org/img/wn/{info['icon']}@2x.png", width=60)
             st.write(info["condition"])
 
-
+'''
 def show_city_map(data):
     lat = data["coord"]["lat"]
     lon = data["coord"]["lon"]
@@ -104,3 +104,4 @@ def show_city_map(data):
 
     st.subheader("City map")
     st.image(map_url)
+'''
