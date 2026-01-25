@@ -54,8 +54,8 @@ def show_weather(data,side):
         st.subheader("Current Conditions")
         # Table 3 columns from streamlit
         col1, col2, col3 = st.columns(3)
-        col1.metric("Temperature (°C)", temp)
-        col2.metric("Humidity (%)", humidity)
+        col1.metric("Temperature (°C)", temp) +'°C'
+        col2.metric("Humidity (%)", humidity) +'%'
         col3.metric("Wind (m/s)", wind)
 
 def show_forecast(forecast_data):
