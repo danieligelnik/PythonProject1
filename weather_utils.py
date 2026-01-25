@@ -105,3 +105,14 @@ def show_city_map(data):
     st.subheader("City map")
     st.image(map_url)
 '''
+def show_city_map(data):
+    lat = data["coord"]["lat"]
+    lng = data["coord"]["lng"]
+
+    map_url = (
+        "https://cartes.io/api/maps/{map-uuid}"
+        f"/?{lat}&{lng}&zoom=12&size=600x400&markers={lat}&{lng},red-pushpin"
+    )
+
+    st.subheader("City map")
+    st.image(map_url)

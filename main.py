@@ -30,4 +30,4 @@ forecast_data = get_json_data(forecast_url, city)
 show_forecast(forecast_data)
 show_daily_conditions(forecast_data)
 
-#show_city_map(data)
+show_city_map(data)
