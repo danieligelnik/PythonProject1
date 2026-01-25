@@ -98,7 +98,7 @@ def show_city_map(data):
     lon = data["coord"]["lon"]
 
     map_url = (
-        "https://staticmap.openstreetmap.de/staticmap.php"
+        "https://staticmap.openstreetmap.org/staticmap.php"
         f"?center={lat},{lon}&zoom=12&size=600x400&markers={lat},{lon},red-pushpin"
     )
 
