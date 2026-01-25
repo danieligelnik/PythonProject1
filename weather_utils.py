@@ -46,7 +46,7 @@ def show_local_time(data,side):
 
 
 def show_weather(data,side):
-    temp = data["main"]["temp"]
+    temp = int(data["main"]["temp"])
     humidity = data["main"]["humidity"]
     wind = data["wind"]["speed"]
 
