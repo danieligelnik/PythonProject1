@@ -121,8 +121,17 @@ def fetch_with_retry(url, data, max_retries=3, timeout=15):
 
 def show_city_map(data):
     try:
-        import pydeck as pdk
-        from unidecode import unidecode
+        try:
+            import pydeck as pdk
+        except ImportError:
+            st.warning("⚠️ pydeck library is not installed. Please install it with: pip install pydeck")
+            return
+
+        try:
+            from unidecode import unidecode
+        except ImportError:
+            st.warning("⚠️ unidecode library is not installed. Please install it with: pip install unidecode")
+            return
 
         def normalize_name(text):
             """Convert text to English by transliterating non-Latin characters"""
@@ -415,5 +424,7 @@ def show_city_map(data):
         else:
             st.info("No museums or entertainment venues found in this area")
 
-    except (KeyError, TypeError) as e:
+    except (KeyError, TypeError, NameError, AttributeError) as e:
         st.warning(f"Unable to display city map: {str(e)}")
+    except Exception as e:
+        st.error(f"An unexpected error occurred while loading the city map: {str(e)}")
