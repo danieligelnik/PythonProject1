@@ -1,5 +1,6 @@
 import streamlit as st
 from weather_utils import *
+from citymap import CityMap
 
 # Sets title of the application
 url = "https://api.openweathermap.org/data/2.5"
@@ -30,5 +31,6 @@ forecast_data = get_json_data(forecast_url, city)
 show_forecast(forecast_data)
 show_daily_conditions(forecast_data)
 
-show_city_map(data)
+cityMap = CityMap("https://overpass-api.de/api/interpreter",data)
+cityMap.show_city_map()
 
