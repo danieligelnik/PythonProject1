@@ -4,7 +4,11 @@ from citymap import CityMap
 
 # Sets title of the application
 url = "https://api.openweathermap.org/data/2.5"
-st.title('Travel Guide')
+
+col1, col2, col3 = st.columns([1,2,1])
+with col2:
+    st.image("img/Logo_Travel_Guide.png", width=250)
+    st.title('Travel Guide')
 
 city = st.text_input('Enter your city name', '')
 if not city:
@@ -33,4 +37,3 @@ show_daily_conditions(forecast_data)
 
 cityMap = CityMap("https://overpass-api.de/api/interpreter",data)
 cityMap.show_city_map()
-
